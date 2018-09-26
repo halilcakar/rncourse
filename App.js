@@ -4,8 +4,6 @@ import { StyleSheet, View } from 'react-native';
 import PlaceInput from './src/components/PlaceInput';
 import PlaceList from './src/components/PlaceList';
 
-import placeImage from './src/assets/beautiful-place.jpg';
-
 export default class App extends Component {
 	state = {
 		places: []
@@ -17,7 +15,9 @@ export default class App extends Component {
         places: prevState.places.concat({ 
           key: Math.random(),
           name: placeName, 
-          image: placeImage
+          image: {
+            uri: 'https://s3-ap-southeast-1.amazonaws.com/storage.propsocial.com/property/pictures/3098715/laman_view-cyberjaya-propsocial-2_EYAh-cSstEyUUC1jPc2d_large.jpg'
+          }
         })
 			};
 		});
