@@ -1,69 +1,42 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux';
 
+import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/';
 import PlaceInput from './src/components/PlaceInput';
 import PlaceList from './src/components/PlaceList';
 import PlaceDetail from './src/components/PlaceDetail';
 
-export default class App extends Component {
-	state = {
-    places: [],
-    selectedPlace: null
-	};
-
-	onModalClose = () => {
-    this.setState({
-      selectedPlace: null
-    });
-  };
+class App extends Component {
   
-  placeSelectedHandler = key => {
-    this.setState(prevState => {
-      return {
-        selectedPlace: prevState.places.find(place => {
-          return place.key === key;
-        })
-      };
-    });
+  placeAddedHandler = placeName => {
+    this.props.onAddPlace(placeName);
   };
 
   placeDeletedHandler = () => {
-    this.setState(prevState => {
-      return {
-        places: prevState.places.find(place => {
-          return place.key !== prevState.selectedPlace.key;
-        }),
-        selectedPlace: null
-      };
-    });
+    this.props.onDeletePlace();
   };
 
-  placeAddedHandler = (placeName) => {
-    this.setState((prevState) => {
-      return {
-        places: prevState.places.concat({
-          key: Math.random(),
-          name: placeName,
-          image: {
-            uri: 'https://s3-ap-southeast-1.amazonaws.com/storage.propsocial.com/property/pictures/3098715/laman_view-cyberjaya-propsocial-2_EYAh-cSstEyUUC1jPc2d_large.jpg'
-          }
-        })
-      };
-    });
+  placeSelectHandler = key => {
+    this.props.onSelectPlace(key);
   };
 
-	render() {
+  modalCloseHandler = () => {
+    this.props.onDeselectPlace();
+  };
+
+  render() {
 		return (
 			<View style={styles.container}>
         <PlaceDetail 
-          selectedPlace={this.state.selectedPlace} 
-          onModalClose={this.onModalClose} 
+          selectedPlace={this.props.selectedPlace}
+          onModalClose={this.modalCloseHandler} 
           onItemDeleted={this.placeDeletedHandler} 
         /> 
 				<PlaceInput onPlaceAdded={this.placeAddedHandler} />
         <PlaceList 
-          places={this.state.places} 
-          onItemSelected={this.placeSelectedHandler} 
+          places={this.props.places} 
+          onItemSelected={this.placeSelectHandler} 
         />
 			</View>
 		);
@@ -79,3 +52,21 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	}
 });
+
+const mapStateToProps = state => {
+  const { places, selectedPlace } = state.places;
+  return {
+    places, selectedPlace
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddPlace: name => dispatch(addPlace(name)),
+    onDeletePlace: () => dispatch(deletePlace()),
+    onSelectPlace: key => dispatch(selectPlace(key)),
+    onDeselectPlace: () => dispatch(deselectPlace())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
