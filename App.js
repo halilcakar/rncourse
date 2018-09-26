@@ -11,21 +11,12 @@ export default class App extends Component {
     selectedPlace: null
 	};
 
-	placeAddedHandler = (placeName) => {
-		this.setState((prevState) => {
-			return {
-        places: prevState.places.concat({ 
-          key: Math.random(),
-          name: placeName, 
-          image: {
-            uri: 'https://s3-ap-southeast-1.amazonaws.com/storage.propsocial.com/property/pictures/3098715/laman_view-cyberjaya-propsocial-2_EYAh-cSstEyUUC1jPc2d_large.jpg'
-          }
-        })
-			};
-		});
+	onModalClose = () => {
+    this.setState({
+      selectedPlace: null
+    });
   };
-
-
+  
   placeSelectedHandler = key => {
     this.setState(prevState => {
       return {
@@ -47,9 +38,17 @@ export default class App extends Component {
     });
   };
 
-  onModalClose = () => {
-    this.setState({
-      selectedPlace: null
+  placeAddedHandler = (placeName) => {
+    this.setState((prevState) => {
+      return {
+        places: prevState.places.concat({
+          key: Math.random(),
+          name: placeName,
+          image: {
+            uri: 'https://s3-ap-southeast-1.amazonaws.com/storage.propsocial.com/property/pictures/3098715/laman_view-cyberjaya-propsocial-2_EYAh-cSstEyUUC1jPc2d_large.jpg'
+          }
+        })
+      };
     });
   };
 
