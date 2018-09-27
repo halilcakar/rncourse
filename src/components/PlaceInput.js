@@ -4,7 +4,7 @@ import { View, TextInput, Button, StyleSheet } from 'react-native';
 class PlaceInput extends Component {
 
     state = {
-		placeName: ''
+      placeName: ''
     };
 
     placeNameChangedHandler = event => {
@@ -18,21 +18,21 @@ class PlaceInput extends Component {
 	};
 
     render() {
-        return (
-            <View style={styles.inputContainer}>
-                <TextInput 
-                    style={styles.textInput} 
-                    placeholder={'An awesome place!'} 
-                    value={this.state.placeName} 
-                    onChangeText={this.placeNameChangedHandler} 
-                />
-                <Button 
-                    title={'Add'} 
-                    style={styles.placeButton}
-                    onPress={this.placeSubmitHandler}
-                />
-            </View>
-        );
+      return (
+        <View style={styles.inputContainer}>
+          <TextInput 
+            style={styles.textInput} 
+            placeholder={'An awesome place!'} 
+            value={this.state.placeName} 
+            onChangeText={this.placeNameChangedHandler} 
+          />
+          <Button 
+            title={'Add'} 
+            style={styles.placeButton}
+            onPress={this.placeSubmitHandler}
+          />
+        </View>
+      );
     }
 }
 
