@@ -19,11 +19,10 @@ const reducer = (state = initialState, action) => {
         })
       };
     case DELETE_PLACE: {
-      const places = state.places.find(place => { return place.key !== state.selectedPlace.key; });
-      console.log(places);
+      const placeSS = state.places.find(place => { return place.key !== state.selectedPlace.key; });
       return {
         ...state,
-        places,
+        places: placeSS,
         selectedPlace: null
       };
     }
