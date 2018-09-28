@@ -3,10 +3,12 @@ import { StyleSheet, FlatList } from 'react-native';
 
 import ListItem from './ListItem';
 
-const placeList = props => (
+const PlaceList = props => (
   <FlatList
     style={styles.listContainer}
     data={props.places}
+    extraData={this.props}
+    keyExtractor={(item, index) => Math.random().toString()}
     renderItem={(info) => (
       <ListItem
         placeName={info.item.name}
@@ -23,4 +25,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default placeList;
+export default PlaceList;

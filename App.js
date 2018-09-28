@@ -18,7 +18,7 @@ Navigation.registerComponent(
 Navigation.registerComponent(
   'awesome-places.SharePlaceScreen', 
   () => SharePlaceScreen, 
-  store, 
+  store,
   Provider
 );
 Navigation.registerComponent(
