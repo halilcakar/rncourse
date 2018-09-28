@@ -30,10 +30,10 @@ public class MainApplication extends NavigationApplication {
   //     );
   //   }
 
-  //   @Override
-  //   protected String getJSMainModuleName() {
-  //     return "index";
-  //   }
+    // @Override
+    // protected String getJSMainModuleName() {
+    //   return "index";
+    // }
   // };
 
   // @Override
@@ -64,5 +64,10 @@ public class MainApplication extends NavigationApplication {
   @Override
   public List<ReactPackage> createAdditionalReactPackages() {
     return getPackages();
+  }
+
+  @Override
+  public String getJSMainModuleName() {
+    return "index";
   }
 }
