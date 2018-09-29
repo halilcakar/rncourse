@@ -3,6 +3,8 @@
   "rules": {
     "arrow-body-style": "off",
     "no-else-return": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "no-restricted-syntax": "off",
+    "guard-for-in": "off"
   }
 }
