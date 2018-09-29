@@ -14,15 +14,19 @@ class AuthScreen extends Component {
 
   constructor(props) {
     super(props);
-    Dimensions.addEventListener('change', () => {
-      this.setState({
-        viewMode: Dimensions.get('window').height > 500 ? 'landscape' : 'portrait'
-      });
-    });
+    Dimensions.addEventListener('change', this.updateStyles);
   }
-
   state = {
     viewMode: Dimensions.get('window').height > 500 ? 'landscape' : 'portrait'
+  };
+  componentWillUnmount() {
+    Dimensions.removeEventListener('change', this.updateStyles);
+  }
+
+  updateStyles = dims => {
+    this.setState({
+      viewMode: dims.window.height > 500 ? 'landscape' : 'portrait'
+    });
   };
 
   loginHandler = () => startMainTabs();
