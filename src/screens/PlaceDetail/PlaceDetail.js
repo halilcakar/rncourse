@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { connect } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -16,10 +16,14 @@ class PlaceDetail extends Component {
     return (<View style={styles.container}>
         <Image source={this.props.selectedPlace.image} style={styles.placeImage} />
         <Text style={styles.placeName}>{this.props.selectedPlace.name}</Text>
-        <View>
+        <View style={styles.subView}>
           <TouchableOpacity onPress={this.placeDeletedHandler}>
             <View style={styles.deleteButton}>
-              <Icon size={30} name='ios-trash' color='red' />
+              <Icon
+                size={30}
+                name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
+                color='red'
+              />
             </View>
           </TouchableOpacity>
         </View>
@@ -31,6 +35,9 @@ class PlaceDetail extends Component {
 const styles = StyleSheet.create({
   container: {
     margin: 22
+  },
+  subView: {
+    alignItems: 'center'
   },
   placeImage: {
     width: '100%',

@@ -1,11 +1,12 @@
 import { Navigation } from 'react-native-navigation';
+import { Platform } from 'react-native';
 import { getImageSource } from 'react-native-vector-icons/Ionicons';
 
 const startTabs = () => {
   Promise.all([
-    getImageSource('md-map', 30),
-    getImageSource('ios-share-alt', 30),
-    getImageSource('ios-menu', 30)
+    getImageSource(Platform.OS === 'android' ? 'md-map' : 'ios-map', 30),
+    getImageSource(Platform.OS === 'android' ? 'md-share-alt' : 'ios-share-alt', 30),
+    getImageSource(Platform.OS === 'android' ? 'md-menu' : 'ios-menu', 30)
   ]).then(sources => {
     const navigatorButtons = {
       leftButtons: [
