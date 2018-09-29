@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 
-import PlaceInput from '../../components/PlaceInput';
 import { addPlace } from '../../store/actions';
+import MainText from '../../components/UI/MainText';
+import HeadingText from '../../components/UI/HeadingText';
+
+import PlaceInput from '../../components/PlaceInput';
+import PickImage from '../../components/PickImage';
+import PickLocation from '../../components/PickLocation';
 
 class SharePlaceScreen extends Component {
 
@@ -28,17 +33,41 @@ class SharePlaceScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <PlaceInput onPlaceAdded={this.placeAddedHandler}/>
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <MainText>
+            <HeadingText>Share a Place with us!</HeadingText>
+          </MainText>
+          <PickImage />
+          <PickLocation />
+          <PlaceInput />
+          <View style={styles.button}>
+            <Button title={'Share the Place!'} onPress={() => {}} />
+          </View>
+        </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center'
+    flex: 1,
+    alignItems: 'center'
+  },
+  placeholder: {
+    borderWidth: 1,
+    borderColor: 'black',
+    backgroundColor: '#eee',
+    width: '80%',
+    height: 150
+  },
+  button: {
+    margin: 8
+  },
+  previewImage: {
+    width: '100%',
+    height: '100%'
   }
 });
 
