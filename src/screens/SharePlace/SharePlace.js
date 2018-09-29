@@ -17,6 +17,10 @@ class SharePlaceScreen extends Component {
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   }
 
+  state = {
+    placeName: '',
+  };
+
   onNavigatorEvent = event => {
     if (event.type === 'NavBarButtonPress') {
       if (event.id === 'sideDrawerToggle') {
@@ -27,8 +31,17 @@ class SharePlaceScreen extends Component {
     }
   };
 
-  placeAddedHandler = placeName => {
-    this.props.onAddPlace(placeName);
+  placeNameChangedHandler = placeName => {
+      this.setState({
+        placeName
+      });
+  };
+
+  placeAddedHandler = () => {
+    const { placeName } = this.state;
+    if (placeName.trim() !== '') {
+      this.props.onAddPlace(placeName);
+    }
   };
 
   render() {
@@ -40,9 +53,12 @@ class SharePlaceScreen extends Component {
           </MainText>
           <PickImage />
           <PickLocation />
-          <PlaceInput />
+          <PlaceInput
+            placeName={this.state.placeName}
+            onChangeText={this.placeNameChangedHandler}
+          />
           <View style={styles.button}>
-            <Button title={'Share the Place!'} onPress={() => {}} />
+            <Button title={'Share the Place!'} onPress={this.placeAddedHandler} />
           </View>
         </View>
       </ScrollView>
