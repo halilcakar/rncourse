@@ -7,6 +7,11 @@ const startTabs = () => {
     getImageSource('ios-share-alt', 30),
     getImageSource('ios-menu', 30)
   ]).then(sources => {
+    const navigatorButtons = {
+      leftButtons: [
+        { icon: sources[2], title: 'Menu', id: 'sideDrawerToggle' }
+      ]
+    };
     Navigation.startTabBasedApp({
       tabs: [
         {
@@ -14,22 +19,14 @@ const startTabs = () => {
           label: 'Find Place',
           title: 'Find Place',
           icon: sources[0],
-          navigatorButtons: {
-            leftButtons: [
-              { icon: sources[2], title: 'Menu', id: 'sideDrawerToggle' }
-            ]
-          }
+          navigatorButtons
         },
         {
           screen: 'awesome-places.SharePlaceScreen',
           label: 'Share Place',
           title: 'Share Place',
           icon: sources[1],
-          navigatorButtons: {
-            leftButtons: [
-              { icon: sources[2], title: 'Menu', id: 'sideDrawerToggle' }
-            ]
-          }
+          navigatorButtons
         }
       ],
       drawer: {
