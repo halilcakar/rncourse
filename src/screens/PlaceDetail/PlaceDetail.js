@@ -14,21 +14,20 @@ class PlaceDetail extends Component {
 
   render() {
     return (<View style={styles.container}>
-        <Image source={this.props.selectedPlace.image} style={styles.placeImage} />
-        <Text style={styles.placeName}>{this.props.selectedPlace.name}</Text>
-        <View style={styles.subView}>
-          <TouchableOpacity onPress={this.placeDeletedHandler}>
-            <View style={styles.deleteButton}>
-              <Icon
-                size={30}
-                name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
-                color='red'
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
+      <Image source={this.props.selectedPlace.image} style={styles.placeImage} />
+      <Text style={styles.placeName}>{this.props.selectedPlace.name}</Text>
+      <View style={styles.subView}>
+        <TouchableOpacity onPress={this.placeDeletedHandler}>
+          <View style={styles.deleteButton}>
+            <Icon
+              size={30}
+              name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
+              color='red'
+            />
+          </View>
+        </TouchableOpacity>
       </View>
-    );
+    </View>);
   }
 }
 
