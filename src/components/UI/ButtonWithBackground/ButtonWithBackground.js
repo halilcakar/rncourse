@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   TouchableOpacity,
   TouchableNativeFeedback,
@@ -6,26 +6,22 @@ import {
   View,
   StyleSheet,
   Platform
-} from 'react-native';
+} from "react-native";
 
 const buttonWithBackground = props => {
   const content = (
     <View style={[styles.button, { backgroundColor: props.color }]}>
-      <Text style={styles.text}>{props.children}</Text>
+      <Text>{props.children}</Text>
     </View>
   );
-  if (Platform.OS === 'android') {
+  if (Platform.OS === "android") {
     return (
       <TouchableNativeFeedback onPress={props.onPress}>
         {content}
       </TouchableNativeFeedback>
     );
   }
-  return (
-    <TouchableOpacity onPress={props.onPress}>
-      {content}
-    </TouchableOpacity>
-  );
+  return <TouchableOpacity onPress={props.onPress}>{content}</TouchableOpacity>;
 };
 
 const styles = StyleSheet.create({
@@ -34,13 +30,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: 'black',
-    alignItems: 'center'
-  },
-  text: {
-    color: 'white',
-    fontSize: 14,
-    fontWeight: 'bold'
+    borderColor: "black"
   }
 });
 
