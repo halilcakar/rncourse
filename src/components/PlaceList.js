@@ -8,7 +8,7 @@ const PlaceList = props => (
     style={styles.listContainer}
     data={props.places}
     extraData={this.props}
-    keyExtractor={(item, index) => Math.random().toString()}
+    keyExtractor={() => Math.random().toString()}
     renderItem={(info) => (
       <ListItem
         placeName={info.item.name}
